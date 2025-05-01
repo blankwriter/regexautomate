@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "java",
+        "name": "Launch App",
+        "request": "launch",
+        "mainClass": "App",
+        "vmArgs": "--module-path /Users/princejohn/Documents/javaWorkspace/automatingText/lib/javafx-sdk-21.0.6 --add-modules javafx.controls,javafx.fxml"
+      }
+    ] 
+  }
