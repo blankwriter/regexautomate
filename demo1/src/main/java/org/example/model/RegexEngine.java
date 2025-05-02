@@ -7,7 +7,7 @@ import java.util.List;
 
 public class RegexEngine {
 
-    public static List<MatchResult> findAllMatches(String text, String regexPattern) {
+    public static List<MatchResult> findAllMatches(String text, String regexPattern, int flags) {
         List<MatchResult> matches = new ArrayList<>();
         Pattern pattern = Pattern.compile(regexPattern);
         Matcher matcher = pattern.matcher(text);
@@ -19,9 +19,12 @@ public class RegexEngine {
         return matches;
     }
 
-    public static String replaceAll(String text, String regexPattern, String replacement) {
-        return text.replaceAll(regexPattern, replacement);
-    }
+    public static String replaceAll(String text, String regexPattern, String replacement, int flags) {
+        Pattern pattern = Pattern.compile(regexPattern, flags);
+        Matcher matcher = pattern.matcher(text);
+        return matcher.replaceAll(replacement);  // replaces all matches
+}
+
 
     public static boolean containsMatch(String text, String regexPattern) {
         return Pattern.compile(regexPattern).matcher(text).find();
