@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="main.java.org.example.controller.FileProcessingController"
+      spacing="10"
+      style="-fx-background-color: #f4f4f4;">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <!-- Title -->
+    <Label text="File Processing" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 0 0 10 0;"/>
+
+    <!-- Input File Section -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Input File:" style="-fx-min-width: 80;"/>
+        <TextField fx:id="inputFilePathField" prefWidth="300"/>
+        <Button text="Browse..." onAction="#handleBrowseInput" style="-fx-min-width: 80;"/>
+        <Button text="Load" onAction="#handleLoadFile" style="-fx-min-width: 80;"/>
+    </HBox>
+
+    <!-- Input Content Display -->
+    <TextArea fx:id="fileInputTextArea" prefHeight="150" style="-fx-font-family: monospace;"/>
+
+    <!-- Search/Replace Section -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Search Pattern:" style="-fx-min-width: 80;"/>
+        <TextField fx:id="searchPatternField" promptText="Regular expression" prefWidth="200"/>
+        <Label text="Replace With:" style="-fx-min-width: 80;"/>
+        <TextField fx:id="replacePatternField" prefWidth="200"/>
+    </HBox>
+
+    <!-- Output File Section -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Output File:" style="-fx-min-width: 80;"/>
+        <TextField fx:id="outputFilePathField" prefWidth="300"/>
+        <Button text="Browse..." onAction="#handleBrowseOutput" style="-fx-min-width: 80;"/>
+        <Button text="Process" onAction="#handleProcessFile" style="-fx-min-width: 80; -fx-base: #4CAF50;"/>
+    </HBox>
+
+    <!-- Results Display -->
+    <TextArea fx:id="fileOutputTextArea" prefHeight="150" editable="false" style="-fx-font-family: monospace;"/>
+</VBox>
