@@ -25,6 +25,14 @@ public class DataAnalysisController {
                 "Top N Words"
         );
         analysisTypeChoice.setValue("Word Frequency");
+
+        // Hide topNField by default
+        topNField.setVisible(false);
+
+        // Show/hide topNField based on selection
+        analysisTypeChoice.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            topNField.setVisible("Top N Words".equals(newVal));
+        });
     }
 
     @FXML
@@ -45,11 +53,17 @@ public class DataAnalysisController {
                     break;
 
                 case "Top N Words":
+                    if (topNField.getText().isEmpty()) {
+                        analysisResults.setText("Error: Please enter a value for N");
+                        return;
+                    }
                     int n = Integer.parseInt(topNField.getText());
-                    Map<String, Long> topWords = DataAnalyzer.topNWords(List.of(text), n);
+                    Map<String, Long> topWords = DataAnalyzer.topNWords(List.of(text.split("\\n")), n);
                     analysisResults.setText(formatMap(topWords));
                     break;
             }
+        } catch (NumberFormatException e) {
+            analysisResults.setText("Error: Please enter a valid number for N");
         } catch (Exception e) {
             analysisResults.setText("Error: " + e.getMessage());
         }
