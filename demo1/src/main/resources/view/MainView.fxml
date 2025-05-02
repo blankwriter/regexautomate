@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="Open" />
+                <MenuItem text="Save" />
+            </Menu>
+            <Menu text="Tools">
+                <MenuItem text="Regex Search" />
+                <MenuItem text="Batch Processing" />
+            </Menu>
+        </MenuBar>
+    </top>
+    <center>
+        <TabPane>
+            <Tab text="Regex Tool">
+                <fx:include source="RegexView.fxml" />
+            </Tab>
+            <Tab text="File Processor">
+                <fx:include source="FileProcessingView.fxml" />
+            </Tab>
+        </TabPane>
+    </center>
+</BorderPane>
