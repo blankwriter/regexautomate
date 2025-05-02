@@ -5,33 +5,36 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Tab?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="main.java.org.example.controller.MainController">
+
     <top>
         <MenuBar>
             <Menu text="File">
-                <MenuItem text="Open" />
-                <MenuItem text="Save" />
+                <MenuItem text="Open" onAction="#handleOpen"/>
+                <MenuItem text="Save" onAction="#handleSave"/>
+                <MenuItem text="Exit" onAction="#handleExit"/>
             </Menu>
             <Menu text="Tools">
-                <MenuItem text="Regex Search" />
-                <MenuItem text="Batch Processing" />
+                <MenuItem text="Regex Search" onAction="#switchToRegexTab"/>
+                <MenuItem text="Batch Processing" onAction="#switchToFileProcessingTab"/>
+                <MenuItem text="Data Analysis" onAction="#switchToDataAnalysisTab"/>
             </Menu>
         </MenuBar>
     </top>
+
     <center>
-        <TabPane>
-            <Tab text="Regex Tool">
+        <TabPane fx:id="mainTabPane">
+            <Tab fx:id="regexTab" text="Regex Tool">
                 <fx:include source="RegexView.fxml" />
             </Tab>
-            <Tab text="File Processor">
+            <Tab fx:id="fileProcessingTab" text="File Processor">
                 <fx:include source="FileProcessingView.fxml" />
+            </Tab>
+            <Tab fx:id="dataAnalysisTab" text="Data Analyse">
+                <fx:include source="DataAnalysisView.fxml" />
             </Tab>
         </TabPane>
     </center>
