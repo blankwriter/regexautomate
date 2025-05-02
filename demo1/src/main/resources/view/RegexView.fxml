@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="main.java.org.example.controller.RegexController"
+      spacing="10"
+      style="-fx-background-color: #f5f5f5;">
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <!-- Title Section -->
+    <Label text="Regular Expression Tool"
+           style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 0 0 10 0;"/>
+
+    <!-- Regex Input Section -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Regex Pattern:" style="-fx-min-width: 100;"/>
+        <TextField fx:id="regexField"
+                   promptText="Enter regex pattern"
+                   prefWidth="300"
+                   style="-fx-font-family: monospace;"/>
+    </HBox>
+
+    <!-- Text Input Area -->
+    <TextArea fx:id="inputTextArea"
+              promptText="Enter text to analyze..."
+              prefHeight="200"
+              style="-fx-font-family: monospace;"/>
+
+    <!-- Action Buttons -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Find Matches"
+                onAction="#handleSearch"
+                style="-fx-min-width: 120; -fx-base: #2196F3;"/>
+
+        <Button text="Replace All"
+                onAction="#handleReplaceAll"
+                style="-fx-min-width: 120; -fx-base: #4CAF50;"/>
+
+        <TextField fx:id="replacementField"
+                   promptText="Replacement text"
+                   visible="false"
+                   style="-fx-font-family: monospace;"/>
+    </HBox>
+
+    <!-- Results Section -->
+    <Label text="Results:" style="-fx-font-weight: bold; -fx-padding: 5 0 5 0;"/>
+    <TextArea fx:id="resultTextArea"
+              editable="false"
+              prefHeight="200"
+              style="-fx-font-family: monospace;"/>
+</VBox>
