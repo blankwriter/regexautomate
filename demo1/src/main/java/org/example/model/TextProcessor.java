@@ -26,7 +26,8 @@ public class TextProcessor {
 
     public static List<String> extractEmails(String text) {
         String emailRegex = "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b";
-        return RegexEngine.findAllMatches(text, emailRegex).stream()
+        int flags = Pattern.CASE_INSENSITIVE;
+        return RegexEngine.findAllMatches(text, emailRegex, flags ).stream()
                 .map(RegexEngine.MatchResult::getMatchedText)
                 .collect(Collectors.toList());
     }
