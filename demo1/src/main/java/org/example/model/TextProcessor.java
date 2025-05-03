@@ -17,12 +17,13 @@ public class TextProcessor {
                 ));
     }
 
-    public static String summarizeText(String text, int maxSentences) {
-        String[] sentences = text.split("[.!?]+");
+    public static String summarizeText(String input, int sentenceCount) {
+        String[] sentences = input.split("(?<=[.!?])\\s+");  // split on period/exclamation/question + whitespace
         return Arrays.stream(sentences)
-                .limit(maxSentences)
-                .collect(Collectors.joining(". ")) + ".";
+                .limit(sentenceCount)
+                .collect(Collectors.joining(" "));
     }
+
 
     public static List<String> extractEmails(String text) {
         String emailRegex = "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b";
@@ -32,11 +33,13 @@ public class TextProcessor {
                 .collect(Collectors.toList());
     }
 
-    public static String cleanText(String text) {
-        // Remove extra whitespace
-        text = text.replaceAll("\\s+", " ").trim();
-        // Standardize line endings
-        text = text.replaceAll("\\r\\n?", "\n");
-        return text;
+    public static String cleanText(String input) {
+        return input
+                .replaceAll("\r\n", "\n")    // Normalize newlines
+                .replaceAll("\t", " ")       // Replace tabs with space
+                .replaceAll(" +", " ")       // Collapse multiple spaces
+                .replaceAll(" *\n *", "\n")  // Trim around newlines
+                .trim();                     // Final trim
     }
+
 }
