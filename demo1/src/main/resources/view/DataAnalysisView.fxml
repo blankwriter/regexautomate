@@ -22,7 +22,7 @@
     <HBox spacing="10">
         <Label text="Analysis Type:"/>
         <ChoiceBox fx:id="analysisTypeChoice" prefWidth="150"/>
-        <Label text="Top N:"/>
+        <Label text="Top N/Sentence No:"/>
         <TextField fx:id="topNField" prefWidth="50" text="10"/>
     </HBox>
 

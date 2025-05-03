@@ -22,17 +22,21 @@ public class DataAnalysisController {
         analysisTypeChoice.getItems().addAll(
                 "Word Frequency",
                 "Email Extraction",
-                "Top N Words"
+                "Top N Words",
+                "Summarize Text",
+                "Clean Text"
+
         );
         analysisTypeChoice.setValue("Word Frequency");
 
         // Hide topNField by default
-        topNField.setVisible(false);
-
-        // Show/hide topNField based on selection
+        // Show/hide numeric input for options that need a number (Top N, Summarize)
         analysisTypeChoice.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-            topNField.setVisible("Top N Words".equals(newVal));
+            topNField.setVisible("Top N Words".equals(newVal) || "Summarize Text".equals(newVal));
         });
+
+        topNField.setPromptText("Enter number");
+        topNField.setVisible(false); // hidden by default
     }
 
     @FXML
@@ -60,6 +64,21 @@ public class DataAnalysisController {
                     int n = Integer.parseInt(topNField.getText());
                     Map<String, Long> topWords = DataAnalyzer.topNWords(List.of(text.split("\\n")), n);
                     analysisResults.setText(formatMap(topWords));
+                    break;
+
+                case "Summarize Text":
+                    if (topNField.getText().isEmpty()) {
+                        analysisResults.setText("Error: Please enter number of sentences");
+                        return;
+                    }
+                    int numSentences = Integer.parseInt(topNField.getText());
+                    String summary = TextProcessor.summarizeText(text, numSentences);
+                    analysisResults.setText(summary);
+                    break;
+
+                case "Clean Text":
+                    String cleaned = TextProcessor.cleanText(text);
+                    analysisResults.setText(cleaned);
                     break;
             }
         } catch (NumberFormatException e) {
